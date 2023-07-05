@@ -11,6 +11,7 @@ public class sol_14405 {
             str=str.replace("ka","1");
             str=str.replace("chu", "1");
         }
+
         str=str.replace("1", "");
         if(str.length()==0){
             result="YES";
