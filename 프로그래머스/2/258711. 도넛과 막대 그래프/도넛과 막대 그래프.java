@@ -8,6 +8,7 @@ class Solution {
     static int num, donutNum, stickNum, eightNum;
     static int node, edge, remember, M;
     static Set set = new HashSet<Integer>();
+    
     public int[] solution(int[][] edges) {
         M = 0;
         for (int i = 0; i < edges.length; i++) {
