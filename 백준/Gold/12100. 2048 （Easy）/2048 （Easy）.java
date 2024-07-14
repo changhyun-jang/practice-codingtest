@@ -35,33 +35,26 @@ public class Main {
             checkMaxValue(arr);
             return;
         }
-        Queue<Integer> tempQueue = new LinkedList<>();
         int[][] temp = new int[N][N];
         // 오른쪽으로 모두 밀착하기
         for (int i = 0; i < N; i++) {
-            int tempValue = -1;
+            int tempValue = -1, nextIdx = N - 1;
             for (int j = N - 1; j >= 0; j--) {
                 if (arr[i][j] == 0) {
                     continue;
                 }
                 if (arr[i][j] == tempValue) {
-                    tempQueue.add(tempValue + arr[i][j]);
+                    temp[i][nextIdx--] = tempValue + arr[i][j];
                     tempValue = -1;
                 } else {
                     if (tempValue != -1) {
-                        tempQueue.add(tempValue);
+                        temp[i][nextIdx--] = tempValue;
                     }
                     tempValue = arr[i][j];
                 }
             }
             if (tempValue != -1) {
-                tempQueue.add(tempValue);
-            }
-            for (int j = N - 1; j >= 0; j--) {
-                if (tempQueue.isEmpty()) {
-                    break;
-                }
-                temp[i][j] = tempQueue.poll();
+                temp[i][nextIdx--] = tempValue;
             }
         }
         simulate(temp, time + 1);
@@ -69,29 +62,23 @@ public class Main {
         temp = new int[N][N];
         // 왼쪽으로 모두 밀착하기
         for (int i = 0; i < N; i++) {
-            int tempValue = -1;
+            int tempValue = -1, nextIdx = 0;
             for (int j = 0; j < N; j++) {
                 if (arr[i][j] == 0) {
                     continue;
                 }
                 if (arr[i][j] == tempValue) {
-                    tempQueue.add(tempValue + arr[i][j]);
+                    temp[i][nextIdx++] = tempValue + arr[i][j];
                     tempValue = -1;
                 } else {
                     if (tempValue != -1) {
-                        tempQueue.add(tempValue);
+                        temp[i][nextIdx++] = tempValue;
                     }
                     tempValue = arr[i][j];
                 }
             }
             if (tempValue != -1) {
-                tempQueue.add(tempValue);
-            }
-            for (int j = 0; j < N; j++) {
-                if (tempQueue.isEmpty()) {
-                    break;
-                }
-                temp[i][j] = tempQueue.poll();
+                temp[i][nextIdx++] = tempValue;
             }
         }
         simulate(temp, time + 1);
@@ -99,29 +86,23 @@ public class Main {
         temp = new int[N][N];
         // 아래로 모두 밀착하기
         for (int i = 0; i < N; i++) {
-            int tempValue = -1;
+            int tempValue = -1, nextIdx = N-1;
             for (int j = N - 1; j >= 0; j--) {
                 if (arr[j][i] == 0) {
                     continue;
                 }
                 if (arr[j][i] == tempValue) {
-                    tempQueue.add(tempValue + arr[j][i]);
+                    temp[nextIdx--][i] = tempValue + arr[j][i];
                     tempValue = -1;
                 } else {
                     if (tempValue != -1) {
-                        tempQueue.add(tempValue);
+                        temp[nextIdx--][i] = tempValue;
                     }
                     tempValue = arr[j][i];
                 }
             }
             if (tempValue != -1) {
-                tempQueue.add(tempValue);
-            }
-            for (int j = N - 1; j >= 0; j--) {
-                if (tempQueue.isEmpty()) {
-                    break;
-                }
-                temp[j][i] = tempQueue.poll();
+                temp[nextIdx--][i] = tempValue;
             }
         }
         simulate(temp, time + 1);
@@ -129,29 +110,23 @@ public class Main {
         temp = new int[N][N];
         // 위로 모두 밀착하기
         for (int i = 0; i < N; i++) {
-            int tempValue = -1;
+            int tempValue = -1, nextIdx = 0;
             for (int j = 0; j < N; j++) {
                 if (arr[j][i] == 0) {
                     continue;
                 }
                 if (arr[j][i] == tempValue) {
-                    tempQueue.add(tempValue + arr[j][i]);
+                    temp[nextIdx++][i] = tempValue + arr[j][i];
                     tempValue = -1;
                 } else {
                     if (tempValue != -1) {
-                        tempQueue.add(tempValue);
+                        temp[nextIdx++][i] = tempValue;
                     }
                     tempValue = arr[j][i];
                 }
             }
             if (tempValue != -1) {
-                tempQueue.add(tempValue);
-            }
-            for (int j = 0; j < N; j++) {
-                if (tempQueue.isEmpty()) {
-                    break;
-                }
-                temp[j][i] = tempQueue.poll();
+                temp[nextIdx++][i] = tempValue;
             }
         }
         simulate(temp, time + 1);
