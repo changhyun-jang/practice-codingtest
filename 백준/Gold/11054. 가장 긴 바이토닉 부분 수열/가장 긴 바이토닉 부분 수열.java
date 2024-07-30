@@ -22,10 +22,6 @@ public class Main {
 
         // 가장 긴 증가하는 수열 길이 저장 배열
         int[] dp = new int[N];
-        Arrays.fill(dp, 1);
-
-        // 가장 긴 증가하는 수열의 인덱스 저장하기
-        int idx = 0;
 
         // 가장 긴 증가하는 수열 구하기
         for (int i = 1; i < N; i++) {
@@ -35,16 +31,15 @@ public class Main {
         }
 
         int[] dp2 = new int[N];
-        Arrays.fill(dp2, 1);
 
         for (int i = N - 2; i >= 0; i--) {
             for (int j = N - 1; j > i; j--) {
                 if (arr[j] < arr[i]) dp2[i] = Math.max(dp2[j] + 1, dp2[i]);
             }
-        }
+        }   
         for (int i = 0; i < N; i++) {
-            answer = Math.max(answer, dp[i] + dp2[i]);
+            answer = Math.max(answer, dp[i] + dp2[i]+1);
         }
-        System.out.println(answer-1);
+        System.out.println(answer);
     }
 }
