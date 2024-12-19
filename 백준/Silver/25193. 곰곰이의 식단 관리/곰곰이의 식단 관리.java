@@ -4,12 +4,13 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int N = Integer.parseInt(br.readLine());
-        String[] str = br.readLine().split("");
+        char[] charArr = br.readLine().toCharArray();
         int countC = 0;
         int countO = 0;
         for (int i = 0; i < N; i++) {
-            if (str[i].equals("C")) {
+            if (charArr[i] == 'C') {
                 countC++;
             } else {
                 countO++;
@@ -20,6 +21,7 @@ public class Main {
         if (countC % countO != 0) {
             answer++;
         }
-        System.out.println(answer);
+        bw.write(String.valueOf(answer));
+        bw.flush();
     }
 }
